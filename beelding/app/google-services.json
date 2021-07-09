@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "937748581892",
+    "firebase_url": "https://test-technique-beeldi.firebaseio.com",
+    "project_id": "test-technique-beeldi",
+    "storage_bucket": "test-technique-beeldi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937748581892:android:86dd563307b5a85216af51",
+        "android_client_info": {
+          "package_name": "com.beeldi.beelding"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937748581892-6bqvp29902v8nhggbqde9gsuca3t649b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEzfPnbHelFxyUGOhaQjBdvlcGD4vyRJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937748581892-6bqvp29902v8nhggbqde9gsuca3t649b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "937748581892-p4bi98crkco26dkbtcbmcs4v43v89abu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.beeldi.beelding"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
