@@ -5,10 +5,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Equipement
@@ -78,7 +76,7 @@ class MainActivity : AppCompatActivity(), ListEquipements {
 				}
 
 				recyclerview.layoutManager = LinearLayoutManager(activity)
-				recyclerview.adapter = RecyclerAdapter(listEquipments, this@MainActivity)
+				recyclerview.adapter = RecyclerEquipementAdapter(listEquipments, this@MainActivity)
 
 				Log.d(TAG, snapshot.toString())
 			}

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Checkpoint
 import com.beeldi.beelding.entity.Equipement
@@ -42,10 +43,13 @@ class DetailsActivity : AppCompatActivity() {
 		domainDetail.text = domain
 		nbFaultsDetail.text = nbFault
 
-		retrieveData(key)
+
+		val recyclerview = findViewById<RecyclerView>(R.id.rvCheckpoint)
+
+		retrieveData(key, recyclerview)
 	}
 
-	private fun retrieveData(key: String?) {
+	private fun retrieveData(key: String?, recyclerview: RecyclerView) {
 		val database = Firebase.database
 		val equipmentsDatabaseReference = database.getReference("Checkpoints")
 		equipmentsDatabaseReference.addListenerForSingleValueEvent(object :
@@ -78,9 +82,10 @@ class DetailsActivity : AppCompatActivity() {
 						e.printStackTrace()
 					}
 				}
-				listCheckpoints.forEach {
-					Log.e("Tag checkpoiint key", "${it.equipmentKey}")
-				}
+
+				recyclerview.layoutManager = LinearLayoutManager(this@DetailsActivity)
+				recyclerview.adapter = RecyclerCheckpointAdapter(listCheckpoints)
+
 				Log.d(MainActivity.TAG, snapshot.toString())
 			}
 		})
