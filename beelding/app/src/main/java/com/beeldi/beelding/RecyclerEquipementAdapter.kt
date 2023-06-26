@@ -1,6 +1,5 @@
 package com.beeldi.beelding
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Equipement
-import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 
@@ -22,20 +20,10 @@ class RecyclerEquipementAdapter(private var equipements: List<Equipement>, val l
 		val itemDomain: MaterialTextView = itemView.findViewById(R.id.Domain)
 		val itemNbFaults: MaterialTextView = itemView.findViewById(R.id.nbFaults)
 		val itemPhoto: ShapeableImageView = itemView.findViewById(R.id.Photo)
-
 		var equipement: Equipement? = null
-
-		init {
-			Log.e("Tag init adapter", "adapter")
-			itemView.setOnClickListener { v: View ->
-				val position: Int = adapterPosition
-				Toast.makeText(itemView.context, "You click here : ${position + 1}", Toast.LENGTH_SHORT).show()
-			}
-		}
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		Log.e("Tag view type", "isPresent")
 		val v = LayoutInflater.from(parent.context).inflate(R.layout.equipement_item, parent, false)
 
 		val viewHolder = ViewHolder(v)
@@ -46,7 +34,6 @@ class RecyclerEquipementAdapter(private var equipements: List<Equipement>, val l
 				listEquipements.clickListener(viewHolderEquipement)
 			}
 		}
-
 		return viewHolder
 	}
 
@@ -59,7 +46,6 @@ class RecyclerEquipementAdapter(private var equipements: List<Equipement>, val l
 		holder.itemDomain.text = equipements[position].domain
 		holder.itemNbFaults.text = equipements[position].nbFaults.toString()
 		holder.equipement = equipements[position]
-
 		listEquipements.getImage(equipements[position].photo, holder.itemPhoto)
 	}
 }

@@ -10,8 +10,6 @@ import android.text.TextWatcher
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Equipement
@@ -35,43 +33,32 @@ class MainActivity : AppCompatActivity(), ListEquipements {
 		setContentView(R.layout.activity_main)
 
 		val recyclerview = findViewById<RecyclerView>(R.id.rvEquipement)
-		val CardEquipement = findViewById<CardView>(R.id.CardEquipement)
 
 		var searchText = findViewById<TextInputEditText>(R.id.tfSearchText)
-//		var search: CharSequence? = searchText?.subSequence(0, searchText?.length)
 
 		retrieveData(searchText, recyclerview, this@MainActivity)
 	}
 
 	private fun retrieveData(searchText: TextInputEditText, recyclerview: RecyclerView, activity: Activity) {
 		val database = Firebase.database
-		Log.e("Tag retrieveData", "$database")
 		val equipmentsDatabaseReference = database.getReference("Equipments")
 
 		equipmentsDatabaseReference.addListenerForSingleValueEvent(object :
 			ValueEventListener {
 			override fun onCancelled(error: DatabaseError) {
-				Log.e("Tag onCancelled", "onCancelled")
 				Log.d(TAG, error.message)
 			}
 
 			override fun onDataChange(snapshot: DataSnapshot) {
-				Log.e("Tag onDataChange", "onDataChange")
 				val equipements = snapshot.children
 				equipements.forEach {
 					try {
-						Log.e("Tag equipement", "$it")
-
 						val data: HashMap<String, Any> = it.value as HashMap<String, Any>
 						val key = it.key
 						val name = data["name"] as String
 						val domain = data["domain"] as String
 						val nbFaults = data["nbFaults"] as Long
 						val photo = data["photo"] as String
-
-//						val photoGlide = Glide.with(this@MainActivity)
-//							.load(photo)
-//							.into(photoEquipement)
 
 //						val notes = data["notes"] as String
 //						val quantity = data["quantity"] as Long
@@ -92,8 +79,6 @@ class MainActivity : AppCompatActivity(), ListEquipements {
 					}
 				}
 
-				Log.e("Tag searchChar", "${searchText.text.toString()}")
-
 				recyclerview.layoutManager = LinearLayoutManager(activity)
 				recyclerview.adapter = RecyclerEquipementAdapter(listEquipments, this@MainActivity)
 
@@ -101,7 +86,6 @@ class MainActivity : AppCompatActivity(), ListEquipements {
 				searchText.addTextChangedListener(object : TextWatcher {
 					override fun afterTextChanged(s: Editable?) {
 						var search: CharSequence = s?.subSequence(0, s.length) ?: ""
-						Log.e("Tag textChange", "${listEquipments.size}")
 						list = listEquipments.filter { it.name!!.contains(search) || it.domain!!.contains(search) }.toMutableList()
 
 						recyclerview.layoutManager = LinearLayoutManager(activity)
@@ -109,25 +93,11 @@ class MainActivity : AppCompatActivity(), ListEquipements {
 					}
 
 					override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//						var search: CharSequence = s?.subSequence(0, s.length) ?: ""
-//						Log.e("Tag textChange", "${listEquipments.size}")
-//						listEquipments = listEquipments.filter { it.name!!.contains(search) || it.domain!!.contains(search) }.toMutableList()
-//
-//						recyclerview.layoutManager = LinearLayoutManager(activity)
-//						recyclerview.adapter = RecyclerEquipementAdapter(listEquipments, this@MainActivity)
 					}
 
 					override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//						var search: CharSequence = s?.subSequence(0, s.length) ?: ""
-//						Log.e("Tag textChange", "${listEquipments.size}")
-//						listEquipments = listEquipments.filter { it.name!!.contains(search) || it.domain!!.contains(search) }.toMutableList()
-//
-//						recyclerview.layoutManager = LinearLayoutManager(activity)
-//						recyclerview.adapter = RecyclerEquipementAdapter(listEquipments, this@MainActivity)
 					}
 				})
-
-				Log.e("Tag list textChange", "${listEquipments.size}")
 
 				recyclerview.layoutManager = LinearLayoutManager(activity)
 				recyclerview.adapter = RecyclerEquipementAdapter(listEquipments, this@MainActivity)

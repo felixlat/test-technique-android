@@ -33,7 +33,6 @@ class DetailsActivity : AppCompatActivity(), ListCheckpoints {
 		bundle ?: return
 
 		val key = bundle.getString("key")
-		Log.e("Tag key", "$key")
 
 		val name = bundle.getString("name")
 		val domain = bundle.getString("domain")
@@ -62,8 +61,6 @@ class DetailsActivity : AppCompatActivity(), ListCheckpoints {
 				val checkpoints = snapshot.children
 				checkpoints.forEach {
 					try {
-						Log.e("Tag checkpoints", "$it")
-
 						val data: HashMap<String, Any> = it.value as HashMap<String, Any>
 
 						val equipmentKey = data["equipmentKey"] as String
