@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Equipement
+import com.bumptech.glide.Glide
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 
 
@@ -19,7 +21,7 @@ class RecyclerEquipementAdapter(private var equipements: List<Equipement>, val l
 		val itemName: MaterialTextView = itemView.findViewById(R.id.Name)
 		val itemDomain: MaterialTextView = itemView.findViewById(R.id.Domain)
 		val itemNbFaults: MaterialTextView = itemView.findViewById(R.id.nbFaults)
-//		val itemPhoto: MaterialTextView = itemView.findViewById(R.id.Photo)
+		val itemPhoto: ShapeableImageView = itemView.findViewById(R.id.Photo)
 
 		var equipement: Equipement? = null
 
@@ -35,24 +37,12 @@ class RecyclerEquipementAdapter(private var equipements: List<Equipement>, val l
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		Log.e("Tag view type", "isPresent")
 		val v = LayoutInflater.from(parent.context).inflate(R.layout.equipement_item, parent, false)
-//		ViewHolder(v, activity).CardEquipement.setOnClickListener {
-//			val bundle = Bundle()
-//			bundle.putInt("position", position)
-//
-//			val intent = Intent(activity, DetailsActivity::class.java)
-//			intent.putExtra("name", equipements[position].name)
-//			intent.putExtra("domain", equipements[position].domain)
-//			intent.putExtra("nbFaults", equipements[position].nbFaults)
-//			intent.putExtra("key", equipements[position].key)
-//
-//			activity.startActivity(intent.putExtras(bundle))
-//		}
 
-		val viewHolder =  ViewHolder(v)
+		val viewHolder = ViewHolder(v)
 
-		viewHolder.CardEquipement.setOnClickListener{
+		viewHolder.CardEquipement.setOnClickListener {
 			var viewHolderEquipement = viewHolder.equipement
-			if(viewHolderEquipement != null) {
+			if (viewHolderEquipement != null) {
 				listEquipements.clickListener(viewHolderEquipement)
 			}
 		}
@@ -69,6 +59,7 @@ class RecyclerEquipementAdapter(private var equipements: List<Equipement>, val l
 		holder.itemDomain.text = equipements[position].domain
 		holder.itemNbFaults.text = equipements[position].nbFaults.toString()
 		holder.equipement = equipements[position]
-//		holder.itemPhoto.text = equipements[position].photo
+
+		listEquipements.getImage(equipements[position].photo, holder.itemPhoto)
 	}
 }

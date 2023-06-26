@@ -1,7 +1,6 @@
 package com.beeldi.beelding
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -9,14 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Checkpoint
-import com.beeldi.beelding.entity.Equipement
+import com.bumptech.glide.Glide
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity(), ListCheckpoints {
 	private var listCheckpoints = mutableListOf<Checkpoint>()
 
 	@SuppressLint("MissingInflatedId")
@@ -84,7 +84,7 @@ class DetailsActivity : AppCompatActivity() {
 				}
 
 				recyclerview.layoutManager = LinearLayoutManager(this@DetailsActivity)
-				recyclerview.adapter = RecyclerCheckpointAdapter(listCheckpoints)
+				recyclerview.adapter = RecyclerCheckpointAdapter(listCheckpoints, this@DetailsActivity)
 
 				Log.d(MainActivity.TAG, snapshot.toString())
 			}
@@ -93,5 +93,11 @@ class DetailsActivity : AppCompatActivity() {
 
 	companion object {
 		const val TAG = "DetailsActivity"
+	}
+
+	override fun getImageCheckpoint(url: String?, photoGlide: ShapeableImageView) {
+		Glide.with(this@DetailsActivity)
+			.load(url)
+			.into(photoGlide)
 	}
 }

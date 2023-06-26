@@ -11,45 +11,49 @@
     <RelativeLayout
         android:id="@+id/rl_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/Photo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="8dp"
+            android:layout_height="50dp"
             android:text="Hello World! 1"
-            app:layout_constraintBottom_toTopOf="@id/Domain"
-            app:layout_constraintLeft_toRightOf="@id/Photo" />
+            app:layout_constraintRight_toRightOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/Name"
+        <RelativeLayout
+            android:id="@+id/rl_equipementInfo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="8dp"
-            android:text="Hello World! 1"
-            app:layout_constraintBottom_toTopOf="@id/Domain"
-            app:layout_constraintLeft_toRightOf="@id/Photo" />
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            app:layout_constraintLeft_toRightOf="@id/Photo">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/Domain"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="8dp"
-            android:text="Hello World 2!"
-            app:layout_constraintTop_toBottomOf="@id/Name"
-            app:layout_constraintBottom_toTopOf="@id/nbFaults"
-            app:layout_constraintLeft_toRightOf="@id/Photo" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:text="Hello World! 1"
+                app:layout_constraintBottom_toTopOf="@id/Domain" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/nbFaults"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:text="Hello World! 3"
-            app:layout_constraintLeft_toRightOf="@id/Photo"
-            app:layout_constraintTop_toBottomOf="@id/Domain" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Domain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Hello World 2!"
+                app:layout_constraintBottom_toTopOf="@id/nbFaults" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/nbFaults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:text="Hello World! 3"
+                app:layout_constraintTop_toBottomOf="@id/Domain" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

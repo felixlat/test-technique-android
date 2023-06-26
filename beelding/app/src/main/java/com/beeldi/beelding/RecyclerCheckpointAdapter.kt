@@ -5,16 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.beeldi.beelding.entity.Checkpoint
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 
-class RecyclerCheckpointAdapter(private var checkpoints: List<Checkpoint>) : RecyclerView.Adapter<RecyclerCheckpointAdapter.ViewHolder>() {
+class RecyclerCheckpointAdapter(private var checkpoints: List<Checkpoint>, val listCheckpoints: ListCheckpoints) : RecyclerView.Adapter<RecyclerCheckpointAdapter.ViewHolder>() {
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 		val checkpointName: MaterialTextView = itemView.findViewById(R.id.checkpointName)
 		val faultCheckpoint: MaterialTextView = itemView.findViewById(R.id.faultCheckpoint)
 		val recommandation: MaterialTextView = itemView.findViewById(R.id.recommandation)
-//		val checkpointPhoto: MaterialTextView = itemView.findViewById(R.id.checkpointPhoto)
 
+		val checkpointPhoto: ShapeableImageView = itemView.findViewById(R.id.checkpointPhoto)
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,5 +32,6 @@ class RecyclerCheckpointAdapter(private var checkpoints: List<Checkpoint>) : Rec
 		holder.faultCheckpoint.text = checkpoints[position].fault
 		holder.recommandation.text = checkpoints[position].recommandation
 //		holder.checkpointPhoto.text = checkpoints[position].photo
+		listCheckpoints.getImageCheckpoint(checkpoints[position].photo, holder.checkpointPhoto)
 	}
 }
